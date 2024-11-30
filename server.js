@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const apiRoutes = require('./routes/apiRoutes'); // Importa el archivo de rutas
+const apiRoutes = require('./routes/apiRoutes'); // Importa el archivo de rutas 
+const authRoutes = require('./routes/authRoutes'); // Rutas de autenticación
 
 // Middleware
 app.use(cors()); //  Habilitar CORS
@@ -11,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Archivos estáticos 
 
 
 // Usar las rutas para acceder a los archivos JSON
+app.use('/api/auth', authRoutes); // Ruta para autenticación
 app.use('/api/data', apiRoutes); // Con esta línea se conectan las rutas del archivo apiRoutes.js
 
 
